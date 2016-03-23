@@ -13,6 +13,6 @@ class dram {
 		dram(string name);
 		int open(string);
 		int read(mem_addr_t from, int count, mem_block_t*);
-		int write(mem_addr_t from, int count, mem_block_t);
+		int write(mem_addr_t from, int count, mem_block_t*);
 		~dram();
 };
