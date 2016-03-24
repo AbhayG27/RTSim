@@ -37,7 +37,7 @@ struct ray
 
 struct precomputedRay
 {
-	Vec3<TYPE> precomp[14];
+	Vec2<TYPE> precomp[7];
 };
 
 struct leafNode

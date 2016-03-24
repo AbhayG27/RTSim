@@ -28,11 +28,11 @@ public:
 		ret.dat[2] = dat[0] * inp.dat[1] - dat[1] * inp.dat[0];
 		return ret;
 	}
-	Vec3<d_type>& operator=(Vec3<d_type>& inp)
+	Vec3<d_type> operator=(Vec3<d_type>& inp)
 	{
-		this.dat[0] = inp.dat[0];
-		this.dat[1] = inp.dat[1];
-		this.dat[2] = inp.dat[2];
+		dat[0] = inp.dat[0];
+		dat[1] = inp.dat[1];
+		dat[2] = inp.dat[2];
 		return this;
 	}
 	Vec3<d_type> operator-(Vec3<d_type> inp)
@@ -42,6 +42,10 @@ public:
 		ret.dat[1]= dat[1] - inp.dat[1];
 		ret.dat[2]= dat[2] - inp.dat[2];
 		return ret;
+	}
+	Vec3<d_type>& operator*(d_type scale)
+	{
+		return Vec3<d_type>(dat[0] * scale, dat[1] * scale, dat[2] * scale);
 	}
 };
 template<class d_type>

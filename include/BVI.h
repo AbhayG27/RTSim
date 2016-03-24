@@ -7,7 +7,7 @@ public:
 	BVI();
 	~BVI();
 
-	int intersect(const precomputedRay r, const boundingVol b, bool& result);
-	int intersect(const precomputedRay r[], const boundingVol b[], bool result[], const int size);
+	int intersect( precomputedRay r,  boundingVol b, bool& result);
+	int intersect( precomputedRay r[],  boundingVol b[], bool result[], int size);
 private:
 };
