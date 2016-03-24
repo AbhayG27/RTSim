@@ -33,6 +33,8 @@ int main(int argc, char * argv[])
 	{
 		iter++;//random
 	}
+	mem_addr_t ad = 100;
+	myMem.writeLittle(0, sizeof(mem_addr_t), &ad);
 	/*mem_block_t a;
 	strcpy_s(a.words, "Abh");
 	dram dramOut("hello.txt");

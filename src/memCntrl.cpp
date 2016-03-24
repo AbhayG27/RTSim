@@ -57,10 +57,30 @@ int memcntrl::readBig(mem_addr_t addr, int size, void* buf)
 
 int memcntrl::writeLittle(mem_addr_t addr, int size, void* buf)
 {
-	return 0;// return appropriate latency
+	mem_word_t temp;
+	mem_word_t * tbuf = (mem_word_t*)buf;
+	unsigned long cycles = 0;
+	int count = size / sizeof(mem_word_t);
+	for (int i = 0; i < count; i++)
+	{
+		temp = tbuf[i];
+		cycles += this->write(addr + i, temp);
+		//*tbuf = *tbuf << (count - i - 1)*sizeof(mem_word_t);
+	}
+	return cycles;
 }
 
 int memcntrl::writeBig(mem_addr_t addr, int size, void* buf)
 {
-	return 0;// return appropriate latency
+	mem_word_t temp;
+	mem_word_t * tbuf = (mem_word_t*)buf;
+	unsigned long cycles = 0;
+	int count = size / sizeof(mem_word_t);
+	for (int i = 0; i < count; i++)
+	{
+		temp = tbuf[count - i - 1];
+		cycles += this->write(addr + i, temp);
+		//*tbuf = *tbuf << (count - i - 1)*sizeof(mem_word_t);
+	}
+	return cycles;
 }
