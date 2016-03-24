@@ -12,6 +12,15 @@ int main(int argc, char * argv[])
 {
 	unsigned long cycles=0;
 	memcntrl myMem("dram.txt");
+	/*char a = 0;
+	for (int i = 0; i < pow(2, sizeof(mem_addr_t)*8); i++)
+		myMem.writeLittle(i, 1, &a);*/
+	mem_addr_t ad = 100;
+	myMem.writeLittle(0, sizeof(mem_addr_t), &ad);
+	myMem.writeLittle(4, sizeof(mem_addr_t), &ad);
+	myMem.writeLittle(8, sizeof(mem_addr_t), &ad);
+	myMem.writeLittle(12, sizeof(mem_addr_t), &ad);
+	myMem.writeLittle(12, sizeof(mem_addr_t), &ad);
 	//mem_word_t temp,w = 'a';
 	buffer<ray> rays(RAY_BUF_SIZE, 1, 1);
 	buffer<precomputedRay> precomputedRays(RAY_BUF_SIZE, 1, 1);
@@ -31,10 +40,8 @@ int main(int argc, char * argv[])
 	//The main loop
 	while (iter < scratchStartOff)//for every ray
 	{
-		iter++;//random
+		iter+=4;//random
 	}
-	mem_addr_t ad = 100;
-	myMem.writeLittle(0, sizeof(mem_addr_t), &ad);
 	/*mem_block_t a;
 	strcpy_s(a.words, "Abh");
 	dram dramOut("hello.txt");
