@@ -4,11 +4,11 @@ dram::dram()
 
 }
 dram::dram(string name) {
-		file.open(name.c_str(), ios_base::in|ios_base::out);
+		file.open(name.c_str(), std::fstream::in| std::fstream::out);
 }
 int dram::open(string name)
 {
-	file.open(name.c_str(), ios_base::in | ios_base::out);
+	file.open(name.c_str(), std::fstream::in | std::fstream::out);
 	return 0;
 }
 int dram::read(mem_addr_t from, int count, mem_block_t* buf)
