@@ -36,11 +36,37 @@ int main(int argc, char * argv[])
 	cycles += myMem.readLittle(RAY_START_OFFSET_LOC, sizeof(mem_addr_t), &rayStartOff);
 	cycles += myMem.readLittle(SCRATCH_START_OFFSET_LOC, sizeof(mem_addr_t), &scratchStartOff);
 	cout << treeStartOff << endl << leafStartOff << endl << triangleStartOff << endl << rayStartOff << endl << scratchStartOff<<endl;
-	mem_addr_t iter = rayStartOff;
+	mem_addr_t rayOff = rayStartOff,treeOff=treeStartOff;
+	ray tray;
+	precomputedRay tpray;
+	treeNode tTNode;
+	bool bviInt;
 	//The main loop
-	while (iter < scratchStartOff)//for every ray
+	while (rayOff < scratchStartOff)//for every ray
 	{
-		iter+=4;//random
+		myMem.readLittle(rayOff, sizeof(ray), &tray);
+		pcu.precompute(tray, tpray);
+		myMem.readLittle(treeOff, sizeof(treeNode), &tTNode);
+		bvi.intersect(tpray, tTNode.bVol, bviInt);
+		if (bviInt)
+		{
+			//go further down the tree
+			if (tTNode.isLeaf == 1)
+			{
+				//test intersection with triangles
+
+			}
+			else
+			{
+
+				treeOff = tTNode.children;//go to children, tests with only one child
+			}
+		}
+		else
+		{
+			//ray misses the tree
+		}
+		rayOff +=sizeof(ray);//random
 	}
 	/*mem_block_t a;
 	a.words[0] = 10;
