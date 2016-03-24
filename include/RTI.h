@@ -6,8 +6,8 @@ class RTI
 public:
 	RTI();
 	~RTI();
-	int intersect(const ray r, const triangle b, bool& result);
-	int intersect(const ray r[], const triangle b[], bool result[], const int size);
+	int intersect(ray r,  triangle b, TYPE t, bool& result);
+	int intersect(ray r[],  triangle b[], TYPE t[], bool result[],int size);
 private:
 
 };

@@ -27,12 +27,32 @@ int memcntrl::write(mem_addr_t addr, mem_word_t word)
 
 int memcntrl::readLittle(mem_addr_t addr, int size, void* buf)
 {
-	return 0;// return appropriate latency
+	mem_word_t temp;
+	mem_word_t * tbuf = (mem_word_t*)buf;
+	unsigned long cycles = 0;
+	int count = size / sizeof(mem_word_t);
+	for (int i = 0; i < count; i++)
+	{
+		cycles += this->read(addr + i, temp);
+		tbuf[i]= temp;
+		//*tbuf = *tbuf << i*sizeof(mem_word_t);
+	}
+	return cycles;
 }
 
 int memcntrl::readBig(mem_addr_t addr, int size, void* buf)
 {
-	return 0;// return appropriate latency
+	mem_word_t temp;
+	mem_word_t * tbuf = (mem_word_t*)buf;
+	unsigned long cycles = 0;
+	int count = size / sizeof(mem_word_t);
+	for (int i = 0; i < count; i++)
+	{
+		cycles += this->read(addr + i, temp);
+		tbuf[count - i - 1] = temp;
+		//*tbuf = *tbuf << (count - i - 1)*sizeof(mem_word_t);
+	}
+	return cycles;
 }
 
 int memcntrl::writeLittle(mem_addr_t addr, int size, void* buf)
