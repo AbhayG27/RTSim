@@ -22,10 +22,10 @@ int main(int argc, char * argv[])
 	myMem.writeLittle(RAY_START_OFFSET_LOC, sizeof(mem_addr_t), &ad);
 	myMem.writeLittle(SCRATCH_START_OFFSET_LOC, sizeof(mem_addr_t), &ad);
 	//mem_word_t temp,w = 'a';
-	buffer<ray> rays(RAY_BUF_SIZE, 1, 1);
-	buffer<precomputedRay> precomputedRays(RAY_BUF_SIZE, 1, 1);
-	reorder<precomputedRay, boundingVol> preComBounVolReorder(RAY_BUF_SIZE, 1, 1);
-	reorder<ray, triangle> preComTriReorder(RAY_BUF_SIZE, 1, 1);
+	buffer<ray> rays(RAY_BUF_SIZE, 1, 1, 1);
+	buffer<precomputedRay> precomputedRays(RAY_BUF_SIZE, 1, 1, 1);
+	reorder<precomputedRay, boundingVol> preComBounVolReorder(RAY_BUF_SIZE, 1, 1, 1);
+	reorder<ray, triangle> preComTriReorder(RAY_BUF_SIZE, 1, 1, 1);
 	BVI bvi;
 	RTI rti;
 	PCU pcu;
@@ -68,27 +68,6 @@ int main(int argc, char * argv[])
 		}
 		rayOff +=sizeof(ray);//random
 	}
-	/*mem_block_t a;
-	a.words[0] = 10;
-	a.words[1] = 0;
-	a.words[2] = 0;
-	a.words[3] = 0;
-	dram dramOut("hello.txt");
-	int latency=dramOut.write(0, 1,&a);
-	cout << "done" << endl;*/
-	//myMem.write(0, w);
-	//cout << "size of char" << sizeof(char);
-	/*mem_word_t m=0;
-	myMem.write(0, 65);
-	myMem.write(1, m);
-	myMem.write(2, m);
-	myMem.write(3, m);*/
-	/*dram myDram("hello1.txt");
-	mem_block_t m;
-	m.words[0] = 65;
-	myDram.write(0,1,&m);
-	myDram.read(0, 1, &m);
-	cout << m.words[0] << endl;*/
 	cout << "total cycles taken: " << cycles << endl;
 	system("pause");
 	return 0;
