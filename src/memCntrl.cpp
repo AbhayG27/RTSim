@@ -1,4 +1,6 @@
 #include "memcntrl.h"
+//#include <iostream>
+//using namespace std;
 memcntrl::memcntrl(string name)
 {
 	myDram.open(name);
@@ -13,6 +15,7 @@ int memcntrl::read(mem_addr_t addr, mem_word_t& word)
 	mem_block_t block;
 	int lat=myDram.read(addr, 1, &block);
 	word = block.words[0];
+	//cout << "reading:" << (int)block.words[0] << (int)block.words[1] << (int)block.words[2] << (int)block.words[3] << endl;
 	return lat;
 }
 
@@ -21,6 +24,7 @@ int memcntrl::write(mem_addr_t addr, mem_word_t word)
 	mem_block_t block;
 	int lat = myDram.read(addr, 1, &block);
 	block.words[0]=word;
+	//cout <<"reading before writing:"<<(int)block.words[0]<<(int)block.words[1]<<(int)block.words[2]<<(int)block.words[3]<<endl;
 	lat+=myDram.write(addr, 1, &block);
 	return lat;
 }
@@ -33,8 +37,9 @@ int memcntrl::readLittle(mem_addr_t addr, int size, void* buf)
 	int count = size / sizeof(mem_word_t);
 	for (int i = 0; i < count; i++)
 	{
-		cycles += this->read(addr + i, temp);
+		cycles += read(addr + i, temp);
 		tbuf[i]= temp;
+		//cout << (int)temp << ":value r" << endl;
 		//*tbuf = *tbuf << i*sizeof(mem_word_t);
 	}
 	return cycles;
@@ -48,7 +53,7 @@ int memcntrl::readBig(mem_addr_t addr, int size, void* buf)
 	int count = size / sizeof(mem_word_t);
 	for (int i = 0; i < count; i++)
 	{
-		cycles += this->read(addr + i, temp);
+		cycles += read(addr + i, temp);
 		tbuf[count - i - 1] = temp;
 		//*tbuf = *tbuf << (count - i - 1)*sizeof(mem_word_t);
 	}
@@ -64,7 +69,8 @@ int memcntrl::writeLittle(mem_addr_t addr, int size, void* buf)
 	for (int i = 0; i < count; i++)
 	{
 		temp = tbuf[i];
-		cycles += this->write(addr + i, temp);
+		cycles += write(addr + i, temp);
+		//cout <<(int)temp<<":value"<<endl;
 		//*tbuf = *tbuf << (count - i - 1)*sizeof(mem_word_t);
 	}
 	return cycles;
@@ -79,7 +85,7 @@ int memcntrl::writeBig(mem_addr_t addr, int size, void* buf)
 	for (int i = 0; i < count; i++)
 	{
 		temp = tbuf[count - i - 1];
-		cycles += this->write(addr + i, temp);
+		cycles += write(addr + i, temp);
 		//*tbuf = *tbuf << (count - i - 1)*sizeof(mem_word_t);
 	}
 	return cycles;

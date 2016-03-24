@@ -15,7 +15,7 @@ int main(int argc, char * argv[])
 	/*char a = 0;
 	for (int i = 0; i < pow(2, sizeof(mem_addr_t)*8); i++)
 		myMem.writeLittle(i, 1, &a);*/
-	mem_addr_t ad = 0;
+	mem_addr_t ad = 10;
 	myMem.writeLittle(TREE_START_OFFSET_LOC, sizeof(mem_addr_t), &ad);
 	myMem.writeLittle(TREE_LEAF_START_OFFSET_LOC, sizeof(mem_addr_t), &ad);
 	myMem.writeLittle(TRIANGLE_START_OFFSET_LOC, sizeof(mem_addr_t), &ad);
@@ -43,9 +43,12 @@ int main(int argc, char * argv[])
 		iter+=4;//random
 	}
 	/*mem_block_t a;
-	strcpy_s(a.words, "Abh");
+	a.words[0] = 10;
+	a.words[1] = 0;
+	a.words[2] = 0;
+	a.words[3] = 0;
 	dram dramOut("hello.txt");
-	int latency=dramOut.write(0, 10, a);
+	int latency=dramOut.write(0, 1,&a);
 	cout << "done" << endl;*/
 	//myMem.write(0, w);
 	//cout << "size of char" << sizeof(char);

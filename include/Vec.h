@@ -4,12 +4,18 @@ class Vec3
 {
 public:
 	d_type dat[3];
-	/*Vec3<d_type>(d_type a, d_type b, d_type c)
+	Vec3<d_type>()
+	{
+		dat[0] = 0;
+		dat[1] = 0;
+		dat[2] = 0;
+	}
+	Vec3<d_type>(d_type a, d_type b, d_type c)
 	{
 		dat[0] = a;
 		dat[1] = b;
 		dat[2] = c;
-	}*/
+	}
 	d_type dot(Vec3<d_type> inp)
 	{
 		return inp.dat[0] * dat[0] + inp.dat[1] * dat[1] + inp.dat[2] * dat[2];

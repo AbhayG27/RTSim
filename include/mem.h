@@ -6,7 +6,7 @@ struct mem_block_t
 {
 	mem_word_t words[BLOCK_SIZE];
 };
-#define MEM_SIZE 1024*8*sizeof(mem_block_t) //64kb memory
+#define MEM_SIZE 1024*1024*sizeof(mem_block_t) //64kb memory
 #define OFFSET_SIZE sizeof(mem_block_t)
 
 //Memory layout
