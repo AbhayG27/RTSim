@@ -46,7 +46,7 @@ public:
 		else
 			return false;
 	}
-	bool almostFull()
+	bool isAlmostFull()
 	{
 		if (myBuf.size()+safe==size)
 			return true;
