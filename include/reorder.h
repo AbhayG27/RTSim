@@ -12,7 +12,7 @@ public:
 		int ETA[2];
 	};
 	vector<entry> eBuffer;
-	reorder(int a,int b, int c,int d)
+	reorder(int sz,int sl, int ll,int safe):eBuffer(sz)
 	{
 
 	}
