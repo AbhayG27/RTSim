@@ -32,7 +32,7 @@ int BVI::intersect(precomputedRay r,boundingVol b, bool& result)
 			return RAY_BVI_INTERSECT_LATENCY;
 		}
 	}
-	if (min(tnear, 7) < max(tfar, 7))
+	if (max(tnear, 7) < min(tfar, 7))
 		result = true;
 	return RAY_BVI_INTERSECT_LATENCY;
 }
