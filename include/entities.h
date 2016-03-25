@@ -42,7 +42,6 @@ struct precomputedRay
 
 struct leafNode
 {
-	boundingVol bVol;
 	mem_addr_t triangles;
 	int numTriangles;
 };
