@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+using namespace std;
 #define ETA_INFINITY -1
 template<class A,class B>
 class reorder

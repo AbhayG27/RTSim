@@ -1,11 +1,12 @@
 #pragma once
 //Currently implementing a circular buffer
+#include <vector>
 using namespace std;
 template<class b_type>
 class buffer
 {
 	int size;
-	std::vector<int> myBuf;
+	vector<b_type> myBuf;
 	int safe;
 	int STORE_LATENCY, LOAD_LATENCY;
 public:
