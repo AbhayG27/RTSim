@@ -1,56 +1,59 @@
 #pragma once
+//Currently implementing a circular buffer
+using namespace std;
 template<class b_type>
 class buffer
 {
 	int size;
-	b_type *myBuf;
-	int rpos, wpos,safe;
+	std::vector<int> myBuf;
+	int safe;
 	int STORE_LATENCY, LOAD_LATENCY;
 public:
 	buffer()
 	{
-		rpos = -1; wpos = -1;
+
 	}
-	buffer(int sz, int sl, int ll,int margin)
+	buffer(int sz, int sl, int ll,int margin):myBuf(sz)
 	{
-		myBuf = (b_type*)malloc(sizeof(b_type)*sz);
 		size = sz;
 		STORE_LATENCY = sl;
 		LOAD_LATENCY = ll;
 		safe = safe;
-		rpos = -1; wpos = -1;
 	}
-	int read(b_type& dat)
+	int get(b_type& dat)
 	{
-		dat=myBuf[rpos++%N]
+		dat=myBuf.get(0);
+		myBuf.pop_top();
 		return LOAD_LATENCY;
 	}
-	int write(b_type dat)
+	int put(b_type dat)
 	{
-		myBuf[wpos++%N] = dat;
+		myBuf.push_back(dat);
 		return STORE_LATENCY;
 	}
 	bool isFull()
 	{
-		if (wpos - rpos < size)
-			return false;
-		else
+		if (myBuf.size() == size)
 			return true;
+		else
+			return false;
 	}
 	bool isEmpty()
 	{
-		if (rpos == -1 && wpos == -1)
+		if (myBuf.size()==0)
+			return true;
+		else
 			return false;
 	}
 	bool almostFull()
 	{
-		if (wpos-rpos-safe<size)
+		if (myBuf.size()+safe==size)
 			return true;
 		else
 			return false;
 	}
 	~buffer()
 	{
-		free(myBuf);
+		
 	}
 };

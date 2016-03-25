@@ -12,9 +12,6 @@ int main(int argc, char * argv[])
 {
 	unsigned long cycles=0;
 	memcntrl myMem("dram.txt");
-	/*char a = 0;
-	for (int i = 0; i < pow(2, sizeof(mem_addr_t)*8); i++)
-		myMem.writeLittle(i, 1, &a);*/
 	mem_addr_t ad = 10;
 	myMem.writeLittle(TREE_START_OFFSET_LOC, sizeof(mem_addr_t), &ad);
 	myMem.writeLittle(TREE_LEAF_START_OFFSET_LOC, sizeof(mem_addr_t), &ad);
