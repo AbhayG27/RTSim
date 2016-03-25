@@ -63,8 +63,9 @@ public:
 		else
 			return false;
 	}
-	int getReadyEntry(A lef,B rig)
+	int getReadyEntry(A& lef,B& rig,bool& present)
 	{
+		present = false;
 		entry * temp;
 		for (int i = 0; i < eBuffer.size(); i++)
 			if (eBuffer.at(i).ETA[0] == 0 && eBuffer.at(i).ETA[1] == 0)
@@ -74,9 +75,10 @@ public:
 				temp = &ebuffer.at(i);
 				delete temp;
 				eBuffer.erase(eBuffer.begin() + i);
+				present = true;
 				break;
 			}
-		return 0;
+		return LOAD_LATENCY;
 	}
 	~reorder()
 	{
