@@ -45,7 +45,6 @@ struct leafNode
 	boundingVol bVol;
 	mem_addr_t triangles;
 	int numTriangles;
-	short isLeaf;
 };
 
 struct treeNode
@@ -53,6 +52,5 @@ struct treeNode
 	boundingVol bVol;
 	mem_addr_t children;
 	int numChildren;
-	short isLeaf;
 };
 

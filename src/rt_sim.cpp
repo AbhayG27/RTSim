@@ -48,7 +48,7 @@ int main(int argc, char * argv[])
 		if (bviInt)
 		{
 			//go further down the tree
-			if (tTNode.isLeaf == 1)
+			if (1)//tTNode.isLeaf == 1)
 			{
 				//test intersection with triangles
 
