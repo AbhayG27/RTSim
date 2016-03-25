@@ -1,0 +1,9 @@
+﻿  rt_sim.cpp
+e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\entities.h(19): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\entities.h(20): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\entities.h(21): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\entities.h(22): warning C4305: 'argument': truncation from 'double' to 'float'
+e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\buffer.h(8): error C2143: syntax error: missing ';' before '<'
+  e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\buffer.h(59): note: see reference to class template instantiation 'buffer<b_type>' being compiled
+e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\buffer.h(8): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+e:\abhay\uf\reconfigurable_computing\ra\rtsim\include\buffer.h(8): error C2238: unexpected token(s) preceding ';'
