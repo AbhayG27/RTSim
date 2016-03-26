@@ -1,4 +1,7 @@
 #include <PCU.h>
+#ifdef DEBUG
+#include <assert.h>
+#endif
 PCU::PCU()
 {
 }
@@ -25,3 +28,13 @@ int PCU::precompute(ray r[], precomputedRay pr[], int size)
 	}
 	return RAY_PRECOMPUTE_LATENCY;
 }
+#ifdef DEBUG
+namespace PCU
+{
+	int main()//PCU test
+	{
+
+		return 0;
+	}
+}
+#endif

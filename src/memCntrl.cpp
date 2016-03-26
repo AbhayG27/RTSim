@@ -1,6 +1,7 @@
 #include "memcntrl.h"
-//#include <iostream>
-//using namespace std;
+#ifdef DEBUG
+#include <assert.h>
+#endif
 memcntrl::memcntrl(string name)
 {
 	myDram.open(name);
@@ -90,3 +91,19 @@ int memcntrl::writeBig(mem_addr_t addr, int size, void* buf)
 	}
 	return cycles;
 }
+#ifdef DEBUG
+namespace memCntrl
+{
+	int main()//memtest
+	{
+		unsigned long cycles = 0;
+		memcntrl myMem("dram.txt");
+		mem_addr_t ad = 10;
+		myMem.writeLittle(0, sizeof(mem_addr_t), &ad);
+		mem_addr_t treeStartOff = 0;
+		cycles += myMem.readLittle(0, sizeof(mem_addr_t), &treeStartOff);
+		assert(ad==treeStartOff);
+		return 0;
+	}
+}
+#endif

@@ -1,4 +1,7 @@
 #include <cache.h>
+#ifdef DEBUG
+#include <assert.h>
+#endif
 cache::cache() {
 }
 int cache::exists(mem_addr_t key) {
@@ -28,3 +31,12 @@ int cache::put(mem_addr_t key, mem_block_t item) {
 cache::~cache() {
 
 }
+#ifdef DEBUG
+namespace cache
+{
+	int main()//Cache Test
+	{
+		return 0;
+	}
+}
+#endif

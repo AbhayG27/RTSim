@@ -1,5 +1,8 @@
 #include <dram.h>
-#include <iostream>
+#ifdef DEBUG
+#include <assert.h>
+#endif
+
 using namespace std;
 dram::dram()
 {
@@ -22,7 +25,6 @@ int dram::read(mem_addr_t from, int count, mem_block_t* buf)
 int dram::write(mem_addr_t from, int count, mem_block_t* buf)
 {
 	file.seekg(from);
-	//cout << "lowest level writing:" << (int)buf->words[0] << (int)buf->words[1] << (int)buf->words[2] << (int)buf->words[3] << endl;
 	file.write((char*)buf, count*sizeof(mem_block_t));
 	return DRAM_WRITE_LATENCY;
 }
@@ -30,4 +32,12 @@ dram::~dram()
 {
 	file.close();
 }
-
+#ifdef DEBUG
+namespace dram
+{
+	int main()//dram Test
+	{
+		return 0;
+	}
+}
+#endif

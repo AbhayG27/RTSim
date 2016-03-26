@@ -1,5 +1,8 @@
 #include <BVI.h>
 #include <helper.h>
+#ifdef DEBUG
+#include <assert.h>
+#endif
 #define epsilon 1e-7
 BVI::BVI()
 {
@@ -44,3 +47,12 @@ int BVI::intersect(precomputedRay r[],boundingVol b[], bool result[], int size)
 	}
 	return RAY_BVI_INTERSECT_LATENCY;
 }
+#ifdef DEBUG
+namespace BVI
+{
+	int main()//BVI test
+	{
+		return 0;
+	}
+}
+#endif
