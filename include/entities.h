@@ -27,6 +27,7 @@ struct boundingVol
 };
 struct triangle
 {
+	unsigned int ID;
 	Vec3<TYPE> vertices[3];
 };
 
@@ -42,12 +43,14 @@ struct precomputedRay
 
 struct leafNode
 {
+	unsigned int ID;
 	mem_addr_t triangles;
 	int numTriangles;
 };
 
 struct treeNode
 {
+	unsigned int ID;
 	boundingVol bVol;
 	mem_addr_t children;
 	int numChildren;
