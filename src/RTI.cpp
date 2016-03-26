@@ -1,5 +1,8 @@
 #include <RTI.h>
 #include <cmath>
+#ifdef DEBUG
+#include <assert.h>
+#endif
 #define kEpsilon  1e-8
 RTI::RTI()
 {
@@ -51,3 +54,12 @@ int RTI::intersect(ray r[],triangle b[], TYPE t[], bool result[],int size)
 	}
 	return latency;
 }
+#ifdef DEBUG
+namespace RTI
+{
+	int main()//RTI Test
+	{
+		return 0;
+	}
+}
+#endif
